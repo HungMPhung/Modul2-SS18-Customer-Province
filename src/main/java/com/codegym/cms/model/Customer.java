@@ -47,4 +47,16 @@ public class Customer {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "province_id")
+    private Province province;
+
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(Province province) {
+        this.province = province;
+    }
 }

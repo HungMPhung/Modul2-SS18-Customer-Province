@@ -1,7 +1,9 @@
 package com.codegym.cms.controller;
 
 import com.codegym.cms.model.Customer;
+import com.codegym.cms.model.Province;
 import com.codegym.cms.service.CustomerService;
+import com.codegym.cms.service.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CustomerController {
     @Autowired
+    private ProvinceService provinceService;
+
+    @Autowired
     private CustomerService customerService;
+
+    @ModelAttribute("provinces")
+    public Iterable<Province>provinces(){
+        return provinceService.findAll();
+    }
 
     @GetMapping("/customers")
     public ModelAndView listCustomers() {
@@ -48,7 +58,6 @@ public class CustomerController {
             ModelAndView modelAndView = new ModelAndView("/customer/edit");
             modelAndView.addObject("customer", customer);
             return modelAndView;
-
         }else {
             ModelAndView modelAndView = new ModelAndView("/error.404");
             return modelAndView;
