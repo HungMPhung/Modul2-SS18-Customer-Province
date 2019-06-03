@@ -17,9 +17,8 @@ public class Province {
 
     public Province(){}
 
-    public Province(String name, List<Customer> customers) {
+    public Province(String name) {
         this.name = name;
-        this.customers = customers;
     }
 
     public Long getId() {
